@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/comman.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/loreco.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+	<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../js/login.js"></script>
+	<script type="text/javascript" src="../js/cookieTools.js"></script>
+</head>
+<body>
+	<!-- header -->
+	<div class="head">
+		<div class="header">
+			<h2><a href="index.html"><img src="../images/logo.jpg"></a>|<span>用户登录</span>
+			<a href="index.html">返回平台首页</a></h2>
+		</div>
+	</div>
+	<!-- 大图 -->
+	<div class="nav">
+		<div class="nav_con">
+			<h1><span>登录乐村淘页面</span><span class="nav_con_h"><img src="../images/ico.png"/></span></h1>
+			<div class="nav_con_l">
+				<p><input id="ivpName" class="inps" type="text" placeholder="邮箱/用户名/已验证的手机"></p>
+				<p><input id="ivpPass" class="inps" type="text" placeholder="请输入密码"></p>
+				<p><input type="checkbox" />两天内自动登录<a class="forma" href="#">忘记密码？</a></p>
+				<div class="code">
+			        <li>
+			        	<input type="text" value="" placeholder="请输入验证码" class="inps input-val">
+			        <canvas id="canvas" width="100" height="30"></canvas>
+			        <a class="canvas2" href="#">
+						<span id="canvas1">换一换</span>
+						<span id="canvas3"></span>
+					</a>
+			        </li>
+			        <button class="btn">登录</button>
+			    </div>
+				<p>还没有账户？<a href="register.html">立即注册</a>
+			</div>
+			<div class="nav_con_lh">
+				<p><img src="../images/res.jpg"/></p>
+				<p>还没有账户？<a href="register.html">立即注册</a>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<div class="foot">
+		<p>
+			<a href="index.html">首页</a>
+			<a href="#">招聘英才</a>
+			<a href="#">合作及洽谈</a>
+			<a href="#">联系我们</a>
+			<a href="#">关于乐村淘</a>
+			<a href="#">创始人简介</a>
+		</p>
+		<p><span>Copyright 2007-2014 www.lecuntao.com Inc.,All rights reserved</span></p>
+		<p>晋ICP备14005286号-1 | 晋B2-20150048</p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".nav_con_h").click (function(e){
+			$(".nav_con_lh").stop(true, false).fadeToggle(150);
+			$(".nav_con_l").stop(true, false).fadeToggle(150);
+			e.preventDefault();
+		});
+		
+		$(".btn").click(function(){
+		$.post(
+			 "../php/login.php",
+			 {"userName":$("#ivpName").val(),"userPass":$("#ivpPass").val()},
+			 function(data){
+				 if(data=="1"){
+					 location.href="home.html";
+				 }
+				 else{
+					 alert("您输入的用户名或密码有误");
+				 }
+			 }
+		);
+	});
+});
+</script>
